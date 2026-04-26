@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dnqtefmdili3m"]
+
+[ext_resource type="Script" uid="uid://dronf2ispd7ru" path="res://test_ground.gd" id="1_22mo8"]
+[ext_resource type="PackedScene" uid="uid://d3piyklnun0xd" path="res://human/human.tscn" id="1_j7xgd"]
+[ext_resource type="Texture2D" uid="uid://brury6xm08fig" path="res://assets/Foil002_2K-JPG/Foil002_2K-JPG_Color.jpg" id="1_jbpl2"]
+[ext_resource type="Texture2D" uid="uid://c4c4y22s3r8o1" path="res://assets/Foil002_2K-JPG/Foil002_2K-JPG_NormalDX.jpg" id="2_j7xgd"]
+[ext_resource type="Texture2D" uid="uid://b7l43ls3itsac" path="res://assets/Foil002_2K-JPG/Foil002_2K-JPG_Roughness.jpg" id="3_jbpl2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_il4dt"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_mbbig"]
+sky_material = SubResource("ProceduralSkyMaterial_il4dt")
+
+[sub_resource type="Environment" id="Environment_c1xqa"]
+background_mode = 2
+sky = SubResource("Sky_mbbig")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_il4dt"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbbig"]
+albedo_texture = ExtResource("1_jbpl2")
+roughness_texture = ExtResource("3_jbpl2")
+normal_enabled = true
+normal_texture = ExtResource("2_j7xgd")
+uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jbpl2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbpl2"]
+
+[node name="Node3D" type="Node3D" unique_id=1605297370]
+script = ExtResource("1_22mo8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=326949599]
+environment = SubResource("Environment_c1xqa")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1570670381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053501368, 0.041617393, -0.037935257)
+use_collision = true
+mesh = SubResource("BoxMesh_il4dt")
+material = SubResource("StandardMaterial3D_mbbig")
+
+[node name="Node3D" parent="." unique_id=2093750784 instance=ExtResource("1_j7xgd")]
+transform = Transform3D(0.99996966, 0.0066980193, -0.0039748154, -0.006701452, 0.9999771, -0.0008511673, 0.0039690253, 0.00087777065, 0.9999918, 2.882158, 3.7873535, 0)
+collision_layer = 2
+collision_mask = 7
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=171207665]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.8365085, 6)
+collision_layer = 4
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=2038255348]
+mesh = SubResource("BoxMesh_jbpl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=556123298]
+shape = SubResource("BoxShape3D_jbpl2")

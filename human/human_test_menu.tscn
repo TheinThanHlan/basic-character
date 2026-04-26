@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://sutqq4x8gq74"]
+
+[ext_resource type="Script" uid="uid://cg3tcep80qree" path="res://human/button.gd" id="1_ol6ww"]
+
+[node name="test_menu" type="Node2D" unique_id=1307156366]
+
+[node name="Button" type="Button" parent="." unique_id=486183640]
+offset_left = 44.0
+offset_top = 33.0
+offset_right = 165.0
+offset_bottom = 72.0
+text = "toggle camera
+"
+script = ExtResource("1_ol6ww")

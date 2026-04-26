@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d3piyklnun0xd"]
+
+[ext_resource type="Script" uid="uid://chbdcqy3itkds" path="res://human/human.gd" id="1_swqfk"]
+[ext_resource type="PackedScene" uid="uid://c0pufb1vrwdc6" path="res://assets/man.blend" id="2_g4y02"]
+[ext_resource type="PackedScene" uid="uid://sutqq4x8gq74" path="res://human/human_test_menu.tscn" id="2_l13k1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wpubp"]
+height = 1.75
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_85bvt"]
+height = 1.7
+
+[node name="human" type="CharacterBody3D" unique_id=2093750784]
+script = ExtResource("1_swqfk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246944932]
+shape = SubResource("CapsuleShape3D_wpubp")
+
+[node name="camera_controller" type="Node3D" parent="." unique_id=1786044518]
+
+[node name="third_person_camera" type="Camera3D" parent="camera_controller" unique_id=1802574572]
+transform = Transform3D(1, 0, 0, 0, 0.9864293, 0.16418685, 0, -0.16418685, 0.9864293, 0, 1.6, 3.2109046)
+fov = 60.0
+near = 0.3
+far = 500.0
+
+[node name="first_person_camera" type="Camera3D" parent="camera_controller" unique_id=1399741237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0504118, 0)
+
+[node name="visuals" type="Node3D" parent="." unique_id=1929102174]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="visuals" unique_id=411960169]
+visible = false
+mesh = SubResource("CapsuleMesh_85bvt")
+
+[node name="man" parent="visuals" unique_id=751546871 instance=ExtResource("2_g4y02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.91135854, 0)
+
+[node name="test_menu" parent="." unique_id=1307156366 instance=ExtResource("2_l13k1")]
